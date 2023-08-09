@@ -1,5 +1,6 @@
 ﻿using EmployeeCRUDApi.Models;
 using EmployeeCRUDApi.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -21,8 +22,10 @@ namespace EmployeeCRUDApi.Controllers
             _configuration = configuration;
         }
 
-   
+
+        [AllowAnonymous]
         [HttpPost("login")]
+     
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
             if (ModelState.IsValid)
